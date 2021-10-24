@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {route, GET} from "awilix-express";
+import {route, GET, POST} from "awilix-express";
 
 @route('/users')
 class UserController {
@@ -23,6 +23,13 @@ class UserController {
     public async user(req: Request, res: Response) {
         const user = await this.User.findOne({ uuid: req.params.uuid });
         return res.json(user);
+    }
+
+    @POST()
+    @route('/')
+    public async create(req: Request, res: Response) {
+        // const user = await this.User.findOne({ uuid: req.params.uuid });
+        return res.json(req.body);
     }
 
 }

@@ -7,6 +7,8 @@ import connect, { connectionConfig } from "./../database/connection";
 import container from "./container";
 const app = express();
 
+app.use(express.json());
+
 app.use(scopePerRequest(container))
 
 app.use(loadControllers("./../http/controllers/*.ts", {cwd: __dirname}));

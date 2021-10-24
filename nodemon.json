@@ -1,6 +1,8 @@
 {
-	"watch": ["app"],
-	"ext": ".ts,.js",
+	"verbose": true,
 	"ignore": [],
-	"exec": "ts-node ./app/bootstrap/app.ts"
+	"watch": ["app/**/*.ts"],
+	"execMap": {
+		"ts": "node --inspect=0.0.0.0:9229 --nolazy -r ts-node/register"
+	}
 }

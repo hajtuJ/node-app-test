@@ -1,16 +1,22 @@
-version: '3'
+version: '3.7'
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
     volumes:
       - .:/usr/src/app
       - /node_modules
+      - ./nodemon.json:/home/node/app/nodemon.json
     container_name: node-app-test
     restart: always
+    expose:
+      - ${PORT}
     ports:
       - ${PORT}:${PORT}
       - 9229:9229
-    command: npm start
+    command: npm run dev
     depends_on:
       - mongo
     links:

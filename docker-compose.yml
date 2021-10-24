@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /node_modules
+    container_name: node-app-test
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+      - 9229:9229
+    command: npm start
+    depends_on:
+      - mongo
+    links:
+      - mongo
+  mongo:
+    container_name: mongo-node-app-test
+    image: mongo
+    ports:
+      - 27017:27017

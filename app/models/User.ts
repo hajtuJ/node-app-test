@@ -10,7 +10,7 @@ export interface IUser extends Document {
     date: object;
 }
 
-const userSchema = new Schema<IUser>({
+const userSchema = new Schema<IUser & Document>({
     uuid:  {type: String, length: 32, required: true, default: Uuid()}, // String is shorthand for {type: String}
     name:  {type: String, required: true}, // String is shorthand for {type: String}
     password:  {type: String, required: true, select: false}, // String is shorthand for {type: String}

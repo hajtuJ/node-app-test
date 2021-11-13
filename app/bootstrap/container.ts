@@ -1,4 +1,5 @@
-import {asValue, createContainer, InjectionMode, Lifetime} from "awilix";
+import {asClass, asValue, createContainer, InjectionMode, Lifetime} from "awilix";
+import UserProvider from "../common/services/authenticate/UserProvider";
 
 const container = createContainer({
     injectionMode: InjectionMode.PROXY
@@ -14,5 +15,9 @@ container.loadModules([
         }
     ]
 ]);
+
+container.register({
+    userProvider: asClass(UserProvider)
+});
 
 export default container;

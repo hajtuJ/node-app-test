@@ -10,15 +10,18 @@ export interface IHashedPassword {
 
 export default class HashedPassword extends ValueObject<HashProps> implements IHashedPassword {
 
-    constructor(protected readonly props: HashProps) {
+    constructor(protected readonly props: HashProps) 
+    {
         super(props);
     }
 
-    public toString(): string {
+    public toString(): string 
+    {
         return this.props.hashedPassword;
     }
 
-    public static fromString(hashedPassword: string): IHashedPassword {
+    public static fromString(hashedPassword: string): IHashedPassword 
+    {
         return new HashedPassword({hashedPassword});
     }
 

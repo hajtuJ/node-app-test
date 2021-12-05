@@ -1,7 +1,8 @@
 import {Request, Response} from "express";
-import {route, GET} from "awilix-express";
+import {route, GET, before} from "awilix-express";
 import {Document, Model} from "mongoose";
 import {IUser} from "../../models/User";
+import { auth } from "./../../common/services/authenticate/strategies/jwt.strategy";
 
 @route('/users')
 class UserController {
@@ -14,6 +15,7 @@ class UserController {
 
     @GET()
     @route('/')
+    @before(auth)
     public async all(req: Request, res: Response): Promise<Response>
     {
         const users = await this.User.find({ limit: 10 }).exec();

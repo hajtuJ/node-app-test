@@ -11,15 +11,18 @@ export interface IPlainPassword {
 export default class PlainPassword extends ValueObject<PlainPasswordProps> implements IPlainPassword
 {
 
-    public constructor(protected readonly props: PlainPasswordProps) {
+    public constructor(protected readonly props: PlainPasswordProps) 
+    {
         super(props);
     };
 
-    public toString(): string {
+    public toString(): string 
+    {
         return this.props.password;
     }
 
-    public static fromString(password: string): IPlainPassword {
+    public static fromString(password: string): IPlainPassword 
+    {
         return new PlainPassword({password});
     }
 

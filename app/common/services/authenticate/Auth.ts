@@ -1,32 +1,29 @@
-
-import {IUserProvider, UserProviderCredentials} from "./UserProvider";
 import {IUser} from "models/User";
-import {Document} from "mongoose";
 
-class Auth {
+export default class Auth {
 
-    private readonly UserProvider;
 
-    private User: Document<IUser> | null = null;
+    private User: IUser | null = null;
 
-    private isAuth: boolean = false;
-
-    constructor({ userProvider }: {userProvider: IUserProvider}) {
-        this.UserProvider = userProvider;
-    }
-
-    private async authenticate(credentials: UserProviderCredentials): Promise<void>
-    {
-        const user = await this.UserProvider.retriveByCredentials(credentials);
-        if (null !== user) {
+    constructor(user: IUser | null) {
+        if (user) {
             this.setUser(user);
         }
     }
 
-    private setUser(user: Document<IUser>): void 
+    public auth(): boolean
     {
-        this.isAuth = true;
+        return !!this.User;
+    }
+
+    private setUser(user: IUser): void 
+    {
         this.User = user;
+    }
+
+    public getID(): string | null
+    {
+        return this.User?.id;
     }
 
 }

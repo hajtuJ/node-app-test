@@ -12,7 +12,6 @@ export const connectionConfig: ConnectionConfigType = {
     database: process.env.MONGO_DB_DATABASE ?? ''
 }
 
-// @ts-ignore
 export default async ({host, port, database}: ConnectionConfigType) => (
     await connect(`mongodb://${host}:${port}/${database}`)
 );

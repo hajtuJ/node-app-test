@@ -8,7 +8,7 @@ export default class HashPasswordService {
         try {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password.toString(), salt);
-            return HashedPassword.fromString(hash);
+            return new HashedPassword({ hashedPassword: hash });
         }catch (e) {
             throw new Error("Can not hash password");
         }
@@ -16,6 +16,7 @@ export default class HashPasswordService {
 
     public static validPassword(plainToCompare: IPlainPassword, hashedPassword: IHashedPassword): boolean
     {
+        console.log(plainToCompare.toString(), hashedPassword.toString());
         return bcrypt.compareSync(plainToCompare.toString(), hashedPassword.toString());
     }
 }

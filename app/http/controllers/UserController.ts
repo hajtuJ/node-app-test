@@ -24,6 +24,7 @@ class UserController {
 
     @GET()
     @route('/:uuid')
+    @before(auth)
     public async user(req: Request, res: Response): Promise<Response>
     {
         const user = await this.User.findOne({ uuid: req.params.uuid });

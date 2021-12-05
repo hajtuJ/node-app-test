@@ -16,7 +16,6 @@ export default class HashPasswordService {
 
     public static validPassword(plainToCompare: IPlainPassword, hashedPassword: IHashedPassword): boolean
     {
-        console.log(plainToCompare.toString(), hashedPassword.toString());
         return bcrypt.compareSync(plainToCompare.toString(), hashedPassword.toString());
     }
 }
